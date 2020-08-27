@@ -9,6 +9,7 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.Executors
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,9 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // test medium website
-        webview.loadUrl("https://medium.com/")
 
+        
         callbackManager = CallbackManager.Factory.create();
         // Callback registration
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
@@ -41,6 +41,13 @@ class MainActivity : AppCompatActivity() {
                 // App code
             }
         })
+
+        btn.setOnClickListener {
+         startActivity(Intent(this,MainActivity2::class.java))
+        }
+
+
+
     }
 
     override fun onActivityResult(
