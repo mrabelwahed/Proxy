@@ -46,7 +46,13 @@ class MainActivity : AppCompatActivity() {
          startActivity(Intent(this,MainActivity2::class.java))
         }
 
+        mediumBtn.setOnClickListener {
+            startActivity(Intent(this,MediumActivity::class.java))
+        }
 
+      firebaseBtn.setOnClickListener {
+          startActivity(Intent(this,FirebaseLogin::class.java))
+      }
 
     }
 
